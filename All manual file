@@ -1,0 +1,5 @@
+mysql -e "CREATE DATABASE IF NOT EXISTS db9956725d;"
+
+mysql -e "CREATE USER '9956725d_user'@'localhost' IDENTIFIED BY '9956725d_password';"
+
+mysql -e "GRANT ALL PRIVILEGES ON db9956725d.* TO '9956725d_user'@'localhost'; FLUSH PRIVILEGES;"
