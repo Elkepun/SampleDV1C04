@@ -1,0 +1,598 @@
+root@cb0350fe18c9:~# puppet apply nginx9956725d.pp --debug
+Debug: Runtime environment: puppet_version=7.34.0, ruby_version=2.7.8, run_mode=user, openssl_version='OpenSSL 1.1.1w  11 Sep 2023', openssl_fips=false, default_encoding=US-ASCII
+Debug: Loading external facts from /opt/puppetlabs/puppet/cache/facts.d
+Info: Loading facts
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/puppet_metrics_collector.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/pe_postgresql_info.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/pe_version.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/pe_server_version.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/staging_http_get.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/pe_patch.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/aio_agent_build.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/platform_symlink_writable.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/platform_tag.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/pe_build.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/windows.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/puppet_files_dir_present.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/inventory.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/aio_agent_version.rb
+Debug: Loading facts from /opt/puppetlabs/puppet/cache/lib/facter/pe_databases.rb
+Debug: Facter: Facter version: 4.10.0
+Debug: Facter: Resolving facts sequentially
+Debug: Facter: Loading all internal facts
+Debug: Facter: Loading custom facts
+Debug: Facter: resolving fact with user_query: facterversion
+Debug: Facter: Searching fact: facterversion in file: facterversion.rb
+Debug: Facter: Searching fact: facterversion in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41dea1928 @name="facterversion", @fact_class=Facts::Linux::Facterversion, @user_query="facterversion", @type=:core, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: fact "facterversion" has resolved to: 4.10.0
+Debug: Facter: resolving fact with user_query: kernel
+Debug: Facter: Searching fact: kernel in file: kernel.rb
+Debug: Facter: Searching fact: kernel in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41f768f60 @name="kernel", @fact_class=Facts::Linux::Kernel, @user_query="kernel", @type=:core, @file=nil>]
+Debug: Facter: Executing command: uname -m &&
+            uname -n &&
+            uname -p &&
+            uname -r &&
+            uname -s &&
+            uname -v
+Debug: Facter: Loading external facts
+Debug: Facter: fact "kernel" has resolved to: Linux
+Debug: Facter: Loading external facts
+Debug: Facter: Executing command: /opt/puppetlabs/puppet/bin/augparse --version 2>&1
+Debug: Facter: Executing command: ip -o link show
+Debug: Facter: Adding to interface lo, binding:
+{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}
+Debug: Facter: Adding to interface eth0, binding:
+{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}
+Debug: Facter: Executing command: ip link show
+Debug: Facter: Get DHCP for interface lo
+Debug: Facter: Attempt to get DHCP for interface lo, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/1 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface lo, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface lo, from dhcpcd command
+Debug: Facter: Found interface lo with {:bindings=>[{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}], :mtu=>65536, :operational_state=>"unknown", :physical=>false}
+Debug: Facter: Get DHCP for interface eth0
+Debug: Facter: Attempt to get DHCP for interface eth0, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/7 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhcpcd command
+Debug: Facter: Found interface eth0 with {:mac=>"02:42:ac:11:00:03", :bindings=>[{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}], :mtu=>1500, :operational_state=>"up", :physical=>false}
+Debug: Facter: Executing command: ip route show
+Debug: Facter: Executing command: ip -6 route show
+Debug: Facter: File at: /etc/ssh_host_rsa_key.pub is not accessible.
+Debug: Facter: File at: /etc/ssh_host_dsa_key.pub is not accessible.
+Debug: Facter: File at: /etc/ssh_host_ecdsa_key.pub is not accessible.
+Debug: Facter: File at: /etc/ssh_host_ed25519_key.pub is not accessible.
+Debug: Facter: File at: /usr/local/etc/ssh_host_rsa_key.pub is not accessible.
+Debug: Facter: File at: /usr/local/etc/ssh_host_dsa_key.pub is not accessible.
+Debug: Facter: File at: /usr/local/etc/ssh_host_ecdsa_key.pub is not accessible.
+Debug: Facter: File at: /usr/local/etc/ssh_host_ed25519_key.pub is not accessible.
+Debug: Facter: File at: /sys/block/fd0/device/model is not accessible.
+Debug: Facter: File at: /sys/block/fd0/device/vendor is not accessible.
+Debug: Facter: Executing command: /bin/lsblk -dn -o serial /dev/sr0
+Debug: Facter: Command /bin/lsblk -dn -o serial /dev/sr0 completed with the following stderr message: lsblk: /dev/sr0: not a block device
+Debug: Facter: Executing command: /bin/lsblk -dn -o serial /dev/fd0
+Debug: Facter: Command /bin/lsblk -dn -o serial /dev/fd0 completed with the following stderr message: lsblk: /dev/fd0: not a block device
+Debug: Facter: Executing command: /bin/lsblk -dn -o serial /dev/sda
+Debug: Facter: Command /bin/lsblk -dn -o serial /dev/sda completed with the following stderr message: lsblk: /dev/sda: not a block device
+Debug: Facter: Executing command: /bin/lsblk -dn -o wwn /dev/sr0
+Debug: Facter: Command /bin/lsblk -dn -o wwn /dev/sr0 completed with the following stderr message: lsblk: /dev/sr0: not a block device
+Debug: Facter: Executing command: /bin/lsblk -dn -o wwn /dev/fd0
+Debug: Facter: Command /bin/lsblk -dn -o wwn /dev/fd0 completed with the following stderr message: lsblk: /dev/fd0: not a block device
+Debug: Facter: Executing command: /bin/lsblk -dn -o wwn /dev/sda
+Debug: Facter: Command /bin/lsblk -dn -o wwn /dev/sda completed with the following stderr message: lsblk: /dev/sda: not a block device
+Debug: Facter: Executing command: ps -o etime= -p "1"
+Debug: Facter: Executing command: virt-what
+Debug: Facter: Failed while executing 'virt-what': No such file or directory - virt-what
+Debug: Facter: Executing command: lspci
+Debug: Facter: Failed while executing 'lspci': No such file or directory - lspci
+Debug: Facter: Vmware hypervisor detected
+Debug: Facter: Executing command: dmidecode
+Debug: Facter: Failed while executing 'dmidecode': No such file or directory - dmidecode
+Debug: Facter: Detected product name: VMware Virtual Platform
+Debug: Facter: Detected hypervisor vmware
+Debug: Facter: Detected product name: VMware Virtual Platform
+Debug: Facter: Detected bios vendor: Phoenix Technologies LTD
+Debug: Facter: No Xen hypervisor detected.
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk -p -P -o NAME,FSTYPE,UUID,LABEL,PARTUUID,PARTLABEL,PARTTYPE
+Debug: Facter: Executing command: blkid
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: Executing command: lsblk --version 2>&1
+Debug: Facter: File at: /proc/sys/crypto/fips_enabled is not accessible.
+Debug: Facter: File at: /proc/xen/capabilities is not accessible.
+Debug: Facter: Linux Virtual Resolver
+Debug: Facter: Fact value is: docker
+Debug: Facter: Tried to retrieve hostname and got: cb0350fe18c9
+Debug: Facter: Only managed to read hostname: cb0350fe18c9, no domain was found.
+Debug: Facter: FFI Getaddrinfo finished with exit status: 0
+Debug: Facter: FFI Getaddrinfo returned an AddrInfo struct at address: #<FFI::MemoryPointer address=0x000055d41f6532d0 size=8>
+Debug: Facter: FFI AddrInfo struct has the fqdn: cb0350fe18c9
+Debug: Facter: FFI getaddrinfo was called and it retrieved: 
+Debug: Facter: Adding to interface lo, binding:
+{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}
+Debug: Facter: Adding to interface eth0, binding:
+{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}
+Debug: Facter: Executing command: ip link show
+Debug: Facter: Get DHCP for interface lo
+Debug: Facter: Attempt to get DHCP for interface lo, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/1 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface lo, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface lo, from dhcpcd command
+Debug: Facter: Found interface lo with {:bindings=>[{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}], :mtu=>65536, :operational_state=>"unknown", :physical=>false}
+Debug: Facter: Get DHCP for interface eth0
+Debug: Facter: Attempt to get DHCP for interface eth0, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/7 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhcpcd command
+Debug: Facter: Found interface eth0 with {:mac=>"02:42:ac:11:00:03", :bindings=>[{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}], :mtu=>1500, :operational_state=>"up", :physical=>false}
+Debug: Facter: Executing command: ip route show
+Debug: Facter: Executing command: ip -6 route show
+Debug: Facter: Adding to interface lo, binding:
+{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}
+Debug: Facter: Adding to interface eth0, binding:
+{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}
+Debug: Facter: Executing command: ip link show
+Debug: Facter: Get DHCP for interface lo
+Debug: Facter: Attempt to get DHCP for interface lo, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/1 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface lo, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface lo, from dhcpcd command
+Debug: Facter: Found interface lo with {:bindings=>[{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}], :mtu=>65536, :operational_state=>"unknown", :physical=>false}
+Debug: Facter: Get DHCP for interface eth0
+Debug: Facter: Attempt to get DHCP for interface eth0, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/7 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhcpcd command
+Debug: Facter: Found interface eth0 with {:mac=>"02:42:ac:11:00:03", :bindings=>[{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}], :mtu=>1500, :operational_state=>"up", :physical=>false}
+Debug: Facter: Executing command: ip route show
+Debug: Facter: Executing command: ip -6 route show
+Debug: Facter: Adding to interface lo, binding:
+{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}
+Debug: Facter: Adding to interface eth0, binding:
+{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}
+Debug: Facter: Executing command: ip link show
+Debug: Facter: Get DHCP for interface lo
+Debug: Facter: Attempt to get DHCP for interface lo, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/1 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface lo, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface lo, from dhcpcd command
+Debug: Facter: Found interface lo with {:bindings=>[{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}], :mtu=>65536, :operational_state=>"unknown", :physical=>false}
+Debug: Facter: Get DHCP for interface eth0
+Debug: Facter: Attempt to get DHCP for interface eth0, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/7 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhcpcd command
+Debug: Facter: Found interface eth0 with {:mac=>"02:42:ac:11:00:03", :bindings=>[{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}], :mtu=>1500, :operational_state=>"up", :physical=>false}
+Debug: Facter: Executing command: ip route show
+Debug: Facter: Executing command: ip -6 route show
+Debug: Facter: Adding to interface lo, binding:
+{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}
+Debug: Facter: Adding to interface eth0, binding:
+{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}
+Debug: Facter: Executing command: ip link show
+Debug: Facter: Get DHCP for interface lo
+Debug: Facter: Attempt to get DHCP for interface lo, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/1 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface lo, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface lo, from dhcpcd command
+Debug: Facter: Found interface lo with {:bindings=>[{:address=>"127.0.0.1", :netmask=>"255.0.0.0", :network=>"127.0.0.0"}], :mtu=>65536, :operational_state=>"unknown", :physical=>false}
+Debug: Facter: Get DHCP for interface eth0
+Debug: Facter: Attempt to get DHCP for interface eth0, from systemd/netif/leases
+Debug: Facter: File at: /run/systemd/netif/leases/7 is not accessible.
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhclient leases
+Debug: Facter: Attempt to get DHCP for interface eth0, from dhcpcd command
+Debug: Facter: Found interface eth0 with {:mac=>"02:42:ac:11:00:03", :bindings=>[{:address=>"172.17.0.3", :netmask=>"255.255.0.0", :network=>"172.17.0.0"}], :mtu=>1500, :operational_state=>"up", :physical=>false}
+Debug: Facter: Executing command: ip route show
+Debug: Facter: Executing command: ip -6 route show
+Debug: Facter: Executing command: lscpu | grep -e 'Thread(s)' -e 'Core(s)'
+Debug: Facter: Executing command: cat /proc/self/mounts
+Debug: Facter: Executing command: cat /proc/self/mounts
+Debug: Facter: Executing command: cat /proc/self/mounts
+Debug: Facter: Executing command: cat /proc/self/mounts
+Debug: Facter: Executing command: cat /proc/self/mounts
+Debug: Facter: custom fact puppetversion was resolved from: /opt/puppetlabs/puppet/lib/ruby/vendor_ruby/puppet.rb:192
+Debug: Facter: Loading all internal facts
+Debug: Facter: value for agent_specified_environment is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: custom fact puppet_metrics_collector was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/puppet_metrics_collector.rb:1
+Debug: Facter: resolving fact with user_query: pe_server_version
+Debug: Facter: Searching fact: pe_server_version in file: pe_server_version.rb
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41f3ee128 @name="pe_server_version", @fact_class=nil, @user_query="pe_server_version", @type=:custom, @file=nil>]
+Debug: Facter: value for pe_server_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: Searching fact: pe_server_version in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: Loading external facts
+Debug: Facter: Found no suitable resolves of  1.000000or pe_postgresql_info
+Debug: Facter: value for pe_postgresql_info is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: resolving fact with user_query: puppetversion
+Debug: Facter: Searching fact: puppetversion in file: puppetversion.rb
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41f1c82e0 @name="puppetversion", @fact_class=nil, @user_query="puppetversion", @type=:custom, @file=nil>]
+Debug: Facter: Searching fact: puppetversion in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: Loading external facts
+Debug: Facter: fact "puppetversion" has resolved to: 7.34.0
+Debug: Facter: value for pe_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: resolving fact with user_query: pe_version
+Debug: Facter: Searching fact: pe_version in file: pe_version.rb
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41efb1f60 @name="pe_version", @fact_class=nil, @user_query="pe_version", @type=:custom, @file=nil>]
+Debug: Facter: value for pe_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: Searching fact: pe_version in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: Loading external facts
+Debug: Facter: custom fact is_pe was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/pe_version.rb:25
+Debug: Facter: Loading all internal facts
+Debug: Facter: resolving fact with user_query: is_pe
+Debug: Facter: Searching fact: is_pe in file: is_pe.rb
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41e3e3af8 @name="is_pe", @fact_class=nil, @user_query="is_pe", @type=:custom, @file=nil>]
+Debug: Facter: Searching fact: is_pe in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: Loading external facts
+Debug: Facter: fact "is_pe" has resolved to: false
+Debug: Facter: Found no suitable resolves of  1.000000or pe_major_version
+Debug: Facter: value for pe_major_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: Found no suitable resolves of  1.000000or pe_minor_version
+Debug: Facter: value for pe_minor_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: Found no suitable resolves of  1.000000or pe_patch_version
+Debug: Facter: value for pe_patch_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: value for pe_server_version is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: custom fact staging_http_get was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/staging_http_get.rb:1
+Debug: Facter: Loading all internal facts
+Debug: Facter: custom fact pe_patch was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/pe_patch.rb:11
+Debug: Facter: resolving fact with user_query: os
+Debug: Facter: Searching fact: os in file: os.rb
+Debug: Facter: Searching fact: os in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41f461510 @name="os.release", @fact_class=Facts::Ubuntu::Os::Release, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f460fc0 @name="os.distro.release", @fact_class=Facts::Ubuntu::Os::Distro::Release, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f460958 @name="os.architecture", @fact_class=Facts::Debian::Os::Architecture, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f460638 @name="os.distro.description", @fact_class=Facts::Debian::Os::Distro::Description, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f4603e0 @name="os.distro.id", @fact_class=Facts::Debian::Os::Distro::Id, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f4601b0 @name="os.distro.codename", @fact_class=Facts::Debian::Os::Distro::Codename, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f405580 @name="os.family", @fact_class=Facts::Linux::Os::Family, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f405288 @name="os.hardware", @fact_class=Facts::Linux::Os::Hardware, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f404fb8 @name="os.selinux.current_mode", @fact_class=Facts::Linux::Os::Selinux::CurrentMode, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f404ce8 @name="os.selinux.enabled", @fact_class=Facts::Linux::Os::Selinux::Enabled, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f404720 @name="os.selinux.enforced", @fact_class=Facts::Linux::Os::Selinux::Enforced, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f4043d8 @name="os.selinux.policy_version", @fact_class=Facts::Linux::Os::Selinux::PolicyVersion, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f404090 @name="os.selinux.config_mode", @fact_class=Facts::Linux::Os::Selinux::ConfigMode, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f3fbcb0 @name="os.selinux.config_policy", @fact_class=Facts::Linux::Os::Selinux::ConfigPolicy, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f3fb9e0 @name="os.name", @fact_class=Facts::Linux::Os::Name, @user_query="os", @type=:core, @file=nil>, #<Facter::SearchedFact:0x000055d41f3fb710 @name="os.distro.specification", @fact_class=Facts::Linux::Os::Distro::Specification, @user_query="os", @type=:core, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: Searching fact: os in all custom facts
+Debug: Facter: Loading custom facts
+Debug: Facter: fact "os.release" has resolved to: {"full"=>"18.04", "major"=>"18.04"}
+Debug: Facter: fact "os.distro.release" has resolved to: {"full"=>"18.04", "major"=>"18.04"}
+Debug: Facter: fact "os.architecture" has resolved to: amd64
+Debug: Facter: fact "os.distro.description" has resolved to: Ubuntu 18.04.6 LTS
+Debug: Facter: fact "os.distro.id" has resolved to: Ubuntu
+Debug: Facter: fact "os.distro.codename" has resolved to: bionic
+Debug: Facter: fact "os.family" has resolved to: Debian
+Debug: Facter: fact "os.hardware" has resolved to: x86_64
+Debug: Facter: fact "os.selinux.enabled" has resolved to: false
+Debug: Facter: fact "os.name" has resolved to: Ubuntu
+Debug: Facter: custom fact aio_agent_build was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/aio_agent_build.rb:5
+Debug: Facter: Loading all internal facts
+Debug: Facter: custom fact platform_symlink_writable was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/platform_symlink_writable.rb:2
+Debug: Facter: custom fact platform_tag was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/platform_tag.rb:20
+Debug: Facter: value for pe_build is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: Found no suitable resolves of  1.000000or common_appdata
+Debug: Facter: value for common_appdata is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: custom fact puppet_files_dir_present was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/puppet_files_dir_present.rb:2
+Debug: Facter: Loading all internal facts
+Debug: Facter: Found no suitable resolves of  1.000000or _puppet_inventory_1
+Debug: Facter: value for _puppet_inventory_1 is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: resolving fact with user_query: _puppet_inventory_1
+Debug: Facter: Searching fact: _puppet_inventory_1 in file: _puppet_inventory_1.rb
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41ef4ef78 @name="_puppet_inventory_1", @fact_class=nil, @user_query="_puppet_inventory_1", @type=:custom, @file=nil>]
+Debug: Facter: Found no suitable resolves of  1.000000or _puppet_inventory_1
+Debug: Facter: value for _puppet_inventory_1 is still nil
+Debug: Facter: Loading all internal facts
+Debug: Facter: Searching fact: _puppet_inventory_1 in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: Loading external facts
+Debug: Facter: custom fact puppet_inventory_metadata was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/inventory.rb:70
+Debug: Facter: Loading all internal facts
+Debug: Facter: custom fact aio_agent_version was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/aio_agent_version.rb:16
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41de0d930 @name="aio_agent_version", @fact_class=Facts::Linux::AioAgentVersion, @user_query="aio_agent_version", @type=:core, @file=nil>]
+Debug: Facter: custom fact pe_databases was resolved from: /opt/puppetlabs/puppet/cache/lib/facter/pe_databases.rb:1
+Debug: Facter: fact "os.release" has resolved to: {"full"=>"18.04", "major"=>"18.04"}
+Debug: Facter: fact "operatingsystemmajrelease" has resolved to: 18.04
+Debug: Facter: fact "operatingsystemrelease" has resolved to: 18.04
+Debug: Facter: fact "os.distro.release" has resolved to: {"full"=>"18.04", "major"=>"18.04"}
+Debug: Facter: fact "os.architecture" has resolved to: amd64
+Debug: Facter: fact "architecture" has resolved to: amd64
+Debug: Facter: fact "os.distro.description" has resolved to: Ubuntu 18.04.6 LTS
+Debug: Facter: fact "os.distro.id" has resolved to: Ubuntu
+Debug: Facter: fact "os.distro.codename" has resolved to: bionic
+Debug: Facter: fact "ruby.version" has resolved to: 2.7.8
+Debug: Facter: fact "rubyversion" has resolved to: 2.7.8
+Debug: Facter: fact "ruby.sitedir" has resolved to: /opt/puppetlabs/puppet/lib/ruby/site_ruby/2.7.0
+Debug: Facter: fact "rubysitedir" has resolved to: /opt/puppetlabs/puppet/lib/ruby/site_ruby/2.7.0
+Debug: Facter: fact "ruby.platform" has resolved to: x86_64-linux
+Debug: Facter: fact "rubyplatform" has resolved to: x86_64-linux
+Debug: Facter: fact "augeas.version" has resolved to: 1.14.1
+Debug: Facter: fact "augeasversion" has resolved to: 1.14.1
+Debug: Facter: fact "mountpoints" has resolved to: {"/"=>{"device"=>"overlay", "filesystem"=>"overlay", "options"=>["rw", "relatime", "lowerdir=/var/lib/docker/overlay2/l/MVYK3DWYPZDN5VFFOL7I6M7VP6:/var/lib/docker/overlay2/l/B3Y5M4N6WI6W7BY6F5ZNULZ7IC", "upperdir=/var/lib/docker/overlay2/0ac2fed9b2a7016254eaeb621dc759790e7a2c7ec02aa14df8086c226804a2de/diff", "workdir=/var/lib/docker/overlay2/0ac2fed9b2a7016254eaeb621dc759790e7a2c7ec02aa14df8086c226804a2de/work", "xino=off"], "size_bytes"=>52519469056, "available_bytes"=>24165253120, "used_bytes"=>25653190656, "capacity"=>"51.49%", "size"=>"48.91 GiB", "available"=>"22.51 GiB", "used"=>"23.89 GiB"}, "/dev"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "size=65536k", "mode=755"], "size_bytes"=>67108864, "available_bytes"=>67108864, "used_bytes"=>0, "capacity"=>"0%", "size"=>"64.00 MiB", "available"=>"64.00 MiB", "used"=>"0 bytes"}, "/dev/pts"=>{"device"=>"devpts", "filesystem"=>"devpts", "options"=>["rw", "nosuid", "noexec", "relatime", "gid=5", "mode=620", "ptmxmode=666"], "size_bytes"=>0, "available_bytes"=>0, "used_bytes"=>0, "capacity"=>"100%", "size"=>"0 bytes", "available"=>"0 bytes", "used"=>"0 bytes"}, "/sys/fs/cgroup"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "nodev", "noexec", "relatime", "mode=755"], "size_bytes"=>8393715712, "available_bytes"=>8393715712, "used_bytes"=>0, "capacity"=>"0%", "size"=>"7.82 GiB", "available"=>"7.82 GiB", "used"=>"0 bytes"}, "/dev/mqueue"=>{"device"=>"mqueue", "filesystem"=>"mqueue", "options"=>["rw", "nosuid", "nodev", "noexec", "relatime"], "size_bytes"=>0, "available_bytes"=>0, "used_bytes"=>0, "capacity"=>"100%", "size"=>"0 bytes", "available"=>"0 bytes", "used"=>"0 bytes"}, "/dev/shm"=>{"device"=>"shm", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "nodev", "noexec", "relatime", "size=65536k"], "size_bytes"=>67108864, "available_bytes"=>67108864, "used_bytes"=>0, "capacity"=>"0%", "size"=>"64.00 MiB", "available"=>"64.00 MiB", "used"=>"0 bytes"}, "/etc/resolv.conf"=>{"device"=>"/dev/sda1", "filesystem"=>"ext4", "options"=>["rw", "relatime", "errors=remount-ro"], "size_bytes"=>52519469056, "available_bytes"=>24165253120, "used_bytes"=>25653190656, "capacity"=>"51.49%", "size"=>"48.91 GiB", "available"=>"22.51 GiB", "used"=>"23.89 GiB"}, "/etc/hostname"=>{"device"=>"/dev/sda1", "filesystem"=>"ext4", "options"=>["rw", "relatime", "errors=remount-ro"], "size_bytes"=>52519469056, "available_bytes"=>24165253120, "used_bytes"=>25653190656, "capacity"=>"51.49%", "size"=>"48.91 GiB", "available"=>"22.51 GiB", "used"=>"23.89 GiB"}, "/etc/hosts"=>{"device"=>"/dev/sda1", "filesystem"=>"ext4", "options"=>["rw", "relatime", "errors=remount-ro"], "size_bytes"=>52519469056, "available_bytes"=>24165253120, "used_bytes"=>25653190656, "capacity"=>"51.49%", "size"=>"48.91 GiB", "available"=>"22.51 GiB", "used"=>"23.89 GiB"}, "/dev/console"=>{"device"=>"devpts", "filesystem"=>"devpts", "options"=>["rw", "nosuid", "noexec", "relatime", "gid=5", "mode=620", "ptmxmode=666"], "size_bytes"=>0, "available_bytes"=>0, "used_bytes"=>0, "capacity"=>"100%", "size"=>"0 bytes", "available"=>"0 bytes", "used"=>"0 bytes"}, "/proc/acpi"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["ro", "relatime"], "size_bytes"=>8393715712, "available_bytes"=>8393715712, "used_bytes"=>0, "capacity"=>"0%", "size"=>"7.82 GiB", "available"=>"7.82 GiB", "used"=>"0 bytes"}, "/proc/kcore"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "size=65536k", "mode=755"], "size_bytes"=>67108864, "available_bytes"=>67108864, "used_bytes"=>0, "capacity"=>"0%", "size"=>"64.00 MiB", "available"=>"64.00 MiB", "used"=>"0 bytes"}, "/proc/keys"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "size=65536k", "mode=755"], "size_bytes"=>67108864, "available_bytes"=>67108864, "used_bytes"=>0, "capacity"=>"0%", "size"=>"64.00 MiB", "available"=>"64.00 MiB", "used"=>"0 bytes"}, "/proc/timer_list"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "size=65536k", "mode=755"], "size_bytes"=>67108864, "available_bytes"=>67108864, "used_bytes"=>0, "capacity"=>"0%", "size"=>"64.00 MiB", "available"=>"64.00 MiB", "used"=>"0 bytes"}, "/proc/sched_debug"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["rw", "nosuid", "size=65536k", "mode=755"], "size_bytes"=>67108864, "available_bytes"=>67108864, "used_bytes"=>0, "capacity"=>"0%", "size"=>"64.00 MiB", "available"=>"64.00 MiB", "used"=>"0 bytes"}, "/proc/scsi"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["ro", "relatime"], "size_bytes"=>8393715712, "available_bytes"=>8393715712, "used_bytes"=>0, "capacity"=>"0%", "size"=>"7.82 GiB", "available"=>"7.82 GiB", "used"=>"0 bytes"}, "/sys/firmware"=>{"device"=>"tmpfs", "filesystem"=>"tmpfs", "options"=>["ro", "relatime"], "size_bytes"=>8393715712, "available_bytes"=>8393715712, "used_bytes"=>0, "capacity"=>"0%", "size"=>"7.82 GiB", "available"=>"7.82 GiB", "used"=>"0 bytes"}}
+Debug: Facter: fact "dhcp_servers" has resolved to: {"system"=>nil}
+Debug: Facter: fact "dmi.manufacturer" has resolved to: VMware, Inc.
+Debug: Facter: fact "manufacturer" has resolved to: VMware, Inc.
+Debug: Facter: fact "dmi.bios.vendor" has resolved to: Phoenix Technologies LTD
+Debug: Facter: fact "bios_vendor" has resolved to: Phoenix Technologies LTD
+Debug: Facter: fact "dmi.bios.version" has resolved to: 6.00
+Debug: Facter: fact "bios_version" has resolved to: 6.00
+Debug: Facter: fact "dmi.bios.release_date" has resolved to: 11/12/2020
+Debug: Facter: fact "bios_release_date" has resolved to: 11/12/2020
+Debug: Facter: fact "dmi.product.uuid" has resolved to: 564db4f7-c7b5-7450-bb37-1c96ee0631b9
+Debug: Facter: fact "uuid" has resolved to: 564db4f7-c7b5-7450-bb37-1c96ee0631b9
+Debug: Facter: fact "dmi.product.version" has resolved to: None
+Debug: Facter: fact "productversion" has resolved to: None
+Debug: Facter: fact "dmi.product.name" has resolved to: VMware Virtual Platform
+Debug: Facter: fact "productname" has resolved to: VMware Virtual Platform
+Debug: Facter: fact "dmi.product.serial_number" has resolved to: VMware-56 4d b4 f7 c7 b5 74 50-bb 37 1c 96 ee 06 31 b9
+Debug: Facter: fact "serialnumber" has resolved to: VMware-56 4d b4 f7 c7 b5 74 50-bb 37 1c 96 ee 06 31 b9
+Debug: Facter: fact "dmi.board.manufacturer" has resolved to: Intel Corporation
+Debug: Facter: fact "boardmanufacturer" has resolved to: Intel Corporation
+Debug: Facter: fact "dmi.board.product" has resolved to: 440BX Desktop Reference Platform
+Debug: Facter: fact "boardproductname" has resolved to: 440BX Desktop Reference Platform
+Debug: Facter: fact "dmi.board.serial_number" has resolved to: None
+Debug: Facter: fact "boardserialnumber" has resolved to: None
+Debug: Facter: fact "dmi.chassis.type" has resolved to: Other
+Debug: Facter: fact "chassistype" has resolved to: Other
+Debug: Facter: fact "dmi.chassis.asset_tag" has resolved to: No Asset Tag
+Debug: Facter: fact "chassisassettag" has resolved to: No Asset Tag
+Debug: Facter: fact "disks" has resolved to: {"sr0"=>{"model"=>"VMware IDE CDR10", "size_bytes"=>56272896, "size"=>"53.67 MiB", "vendor"=>"NECVMWar", "type"=>"hdd"}, "fd0"=>{"size_bytes"=>4096, "size"=>"4.00 KiB", "type"=>"hdd"}, "sda"=>{"model"=>"VMware Virtual S", "size_bytes"=>53687091200, "size"=>"50.00 GiB", "vendor"=>"VMware,", "type"=>"hdd"}}
+Debug: Facter: fact "blockdevices" has resolved to: sr0,fd0,sda
+Debug: Facter: fact "blockdevice_sr0_model" has resolved to: VMware IDE CDR10
+Debug: Facter: fact "blockdevice_sda_model" has resolved to: VMware Virtual S
+Debug: Facter: fact "blockdevice_sr0_size" has resolved to: 56272896
+Debug: Facter: fact "blockdevice_fd0_size" has resolved to: 4096
+Debug: Facter: fact "blockdevice_sda_size" has resolved to: 53687091200
+Debug: Facter: fact "blockdevice_sr0_vendor" has resolved to: NECVMWar
+Debug: Facter: fact "blockdevice_sda_vendor" has resolved to: VMware,
+Debug: Facter: fact "system_uptime.hours" has resolved to: 1
+Debug: Facter: fact "uptime_hours" has resolved to: 1
+Debug: Facter: fact "system_uptime.seconds" has resolved to: 4132
+Debug: Facter: fact "uptime_seconds" has resolved to: 4132
+Debug: Facter: fact "system_uptime.uptime" has resolved to: 1:08 hours
+Debug: Facter: fact "uptime" has resolved to: 1:08 hours
+Debug: Facter: fact "system_uptime.days" has resolved to: 0
+Debug: Facter: fact "uptime_days" has resolved to: 0
+Debug: Facter: fact "timezone" has resolved to: UTC
+Debug: Facter: fact "hypervisors.vmware" has resolved to: {}
+Debug: Facter: fact "hypervisors.docker" has resolved to: {"id"=>"cb0350fe18c93f55aaa64e8af224ee0c743dc8fe5bb8c5c8eca6b5bb2c830901"}
+Debug: Facter: fact "partitions" has resolved to: {"/dev/loop1"=>{"size_bytes"=>46448640, "size"=>"44.30 MiB", "backing_file"=>"/var/lib/snapd/snaps/snapd_23258.snap"}, "/dev/loop19"=>{"size_bytes"=>68378624, "size"=>"65.21 MiB", "backing_file"=>"/var/lib/snapd/snaps/gtk-common-themes_1519.snap"}, "/dev/loop17"=>{"size_bytes"=>12570624, "size"=>"11.99 MiB", "backing_file"=>"/var/lib/snapd/snaps/kubectl_3281.snap"}, "/dev/loop8"=>{"size_bytes"=>524288, "size"=>"512.00 KiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-characters_795.snap"}, "/dev/loop25"=>{"size_bytes"=>259948544, "size"=>"247.91 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-3-38-2004_87.snap"}, "/dev/loop15"=>{"size_bytes"=>229638144, "size"=>"219.00 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-3-34-1804_77.snap"}, "/dev/loop6"=>{"size_bytes"=>529625088, "size"=>"505.09 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-42-2204_176.snap"}, "/dev/loop23"=>{"size_bytes"=>1552384, "size"=>"1.48 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-system-monitor_184.snap"}, "/dev/loop13"=>{"size_bytes"=>228999168, "size"=>"218.39 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-3-34-1804_93.snap"}, "/dev/loop4"=>{"size_bytes"=>77459456, "size"=>"73.87 MiB", "backing_file"=>"/var/lib/snapd/snaps/core22_1722.snap"}, "/dev/loop21"=>{"size_bytes"=>831488, "size"=>"812.00 KiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-logs_121.snap"}, "/dev/loop11"=>{"size_bytes"=>1617920, "size"=>"1.54 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-system-monitor_186.snap"}, "/dev/loop2"=>{"size_bytes"=>880640, "size"=>"860.00 KiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-logs_123.snap"}, "/dev/loop0"=>{"size_bytes"=>521121792, "size"=>"496.98 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-42-2204_141.snap"}, "/dev/loop18"=>{"size_bytes"=>528384, "size"=>"516.00 KiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-characters_797.snap"}, "/dev/loop9"=>{"size_bytes"=>13479936, "size"=>"12.86 MiB", "backing_file"=>"/var/lib/snapd/snaps/kubectl_3482.snap"}, "/dev/loop26"=>{"size_bytes"=>58363904, "size"=>"55.66 MiB", "backing_file"=>"/var/lib/snapd/snaps/core18_2823.snap"}, "/dev/loop16"=>{"size_bytes"=>2342912, "size"=>"2.23 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-calculator_955.snap"}, "/dev/loop7"=>{"size_bytes"=>2342912, "size"=>"2.23 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-calculator_953.snap"}, "/dev/loop24"=>{"size_bytes"=>96141312, "size"=>"91.69 MiB", "backing_file"=>"/var/lib/snapd/snaps/gtk-common-themes_1535.snap"}, "/dev/sda1"=>{"size_bytes"=>53684994048, "size"=>"50.00 GiB", "mount"=>"/etc/resolv.conf"}, "/dev/loop14"=>{"size_bytes"=>58052608, "size"=>"55.36 MiB", "backing_file"=>"/var/lib/snapd/snaps/core18_2846.snap"}, "/dev/loop5"=>{"size_bytes"=>366682112, "size"=>"349.70 MiB", "backing_file"=>"/var/lib/snapd/snaps/gnome-3-38-2004_143.snap"}, "/dev/loop22"=>{"size_bytes"=>4096, "size"=>"4.00 KiB", "backing_file"=>"/var/lib/snapd/snaps/bare_5.snap"}, "/dev/loop12"=>{"size_bytes"=>40714240, "size"=>"38.83 MiB", "backing_file"=>"/var/lib/snapd/snaps/snapd_21759.snap"}, "/dev/loop3"=>{"size_bytes"=>67051520, "size"=>"63.95 MiB", "backing_file"=>"/var/lib/snapd/snaps/core20_2318.snap"}, "/dev/loop20"=>{"size_bytes"=>66789376, "size"=>"63.70 MiB", "backing_file"=>"/var/lib/snapd/snaps/core20_2434.snap"}, "/dev/loop10"=>{"size_bytes"=>77844480, "size"=>"74.24 MiB", "backing_file"=>"/var/lib/snapd/snaps/core22_1380.snap"}}
+Debug: Facter: fact "facterversion" has resolved to: 4.10.0
+Debug: Facter: fact "filesystems" has resolved to: ext2,ext3,ext4,iso9660,squashfs,vfat
+Debug: Facter: fact "fips_enabled" has resolved to: false
+Debug: Facter: fact "processor0" has resolved to: 13th Gen Intel(R) Core(TM) i5-13400F
+Debug: Facter: fact "processor1" has resolved to: 13th Gen Intel(R) Core(TM) i5-13400F
+Debug: Facter: fact "identity.group" has resolved to: root
+Debug: Facter: fact "gid" has resolved to: root
+Debug: Facter: fact "identity.privileged" has resolved to: true
+Debug: Facter: fact "identity.uid" has resolved to: 0
+Debug: Facter: fact "identity.user" has resolved to: root
+Debug: Facter: fact "id" has resolved to: root
+Debug: Facter: fact "identity.gid" has resolved to: 0
+Debug: Facter: fact "interfaces" has resolved to: eth0,lo
+Debug: Facter: fact "ipaddress_lo" has resolved to: 127.0.0.1
+Debug: Facter: fact "ipaddress_eth0" has resolved to: 172.17.0.3
+Debug: Facter: fact "is_virtual" has resolved to: true
+Debug: Facter: fact "virtual" has resolved to: docker
+Debug: Facter: fact "kernelmajversion" has resolved to: 5.4
+Debug: Facter: fact "networking.network" has resolved to: 172.17.0.0
+Debug: Facter: fact "network" has resolved to: 172.17.0.0
+Debug: Facter: fact "networking.fqdn" has resolved to: cb0350fe18c9
+Debug: Facter: fact "fqdn" has resolved to: cb0350fe18c9
+Debug: Facter: fact "networking.hostname" has resolved to: cb0350fe18c9
+Debug: Facter: fact "hostname" has resolved to: cb0350fe18c9
+Debug: Facter: fact "networking.ip" has resolved to: 172.17.0.3
+Debug: Facter: fact "ipaddress" has resolved to: 172.17.0.3
+Debug: Facter: fact "networking.interfaces" has resolved to: {"lo"=>{"bindings"=>[{"address"=>"127.0.0.1", "netmask"=>"255.0.0.0", "network"=>"127.0.0.0"}], "mtu"=>65536, "operational_state"=>"unknown", "physical"=>false, "ip"=>"127.0.0.1", "netmask"=>"255.0.0.0", "network"=>"127.0.0.0"}, "eth0"=>{"mac"=>"02:42:ac:11:00:03", "bindings"=>[{"address"=>"172.17.0.3", "netmask"=>"255.255.0.0", "network"=>"172.17.0.0"}], "mtu"=>1500, "operational_state"=>"up", "physical"=>false, "ip"=>"172.17.0.3", "netmask"=>"255.255.0.0", "network"=>"172.17.0.0"}}
+Debug: Facter: fact "networking.mac" has resolved to: 02:42:ac:11:00:03
+Debug: Facter: fact "macaddress" has resolved to: 02:42:ac:11:00:03
+Debug: Facter: fact "networking.netmask" has resolved to: 255.255.0.0
+Debug: Facter: fact "netmask" has resolved to: 255.255.0.0
+Debug: Facter: fact "networking.mtu" has resolved to: 1500
+Debug: Facter: fact "networking.primary" has resolved to: eth0
+Debug: Facter: fact "kernelrelease" has resolved to: 5.4.0-150-generic
+Debug: Facter: fact "kernelversion" has resolved to: 5.4.0
+Debug: Facter: fact "load_averages" has resolved to: {"1m"=>0.25, "5m"=>0.23, "15m"=>0.34}
+Debug: Facter: fact "macaddress_eth0" has resolved to: 02:42:ac:11:00:03
+Debug: Facter: fact "processors.isa" has resolved to: x86_64
+Debug: Facter: fact "hardwareisa" has resolved to: x86_64
+Debug: Facter: fact "processors.models" has resolved to: ["13th Gen Intel(R) Core(TM) i5-13400F", "13th Gen Intel(R) Core(TM) i5-13400F"]
+Debug: Facter: fact "processors.physicalcount" has resolved to: 1
+Debug: Facter: fact "physicalprocessorcount" has resolved to: 1
+Debug: Facter: fact "processors.speed" has resolved to: 2.50 GHz
+Debug: Facter: fact "processors.threads" has resolved to: 1
+Debug: Facter: fact "processors.cores" has resolved to: 2
+Debug: Facter: fact "processors.count" has resolved to: 2
+Debug: Facter: fact "processorcount" has resolved to: 2
+Debug: Facter: fact "processors.extensions" has resolved to: ["x86_64", "x86_64-v1", "x86_64-v2", "x86_64-v3"]
+Debug: Facter: fact "path" has resolved to: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/puppetlabs/bin
+Debug: Facter: fact "mtu_lo" has resolved to: 65536
+Debug: Facter: fact "mtu_eth0" has resolved to: 1500
+Debug: Facter: fact "netmask_lo" has resolved to: 255.0.0.0
+Debug: Facter: fact "netmask_eth0" has resolved to: 255.255.0.0
+Debug: Facter: fact "network_lo" has resolved to: 127.0.0.0
+Debug: Facter: fact "network_eth0" has resolved to: 172.17.0.0
+Debug: Facter: fact "memory.swap.available" has resolved to: 2.00 GiB
+Debug: Facter: fact "swapfree" has resolved to: 2.00 GiB
+Debug: Facter: fact "memory.swap.available_bytes" has resolved to: 2147479552
+Debug: Facter: fact "swapfree_mb" has resolved to: 2047.99609375
+Debug: Facter: fact "memory.swap.capacity" has resolved to: 0.00%
+Debug: Facter: fact "memory.swap.total" has resolved to: 2.00 GiB
+Debug: Facter: fact "swapsize" has resolved to: 2.00 GiB
+Debug: Facter: fact "memory.swap.total_bytes" has resolved to: 2147479552
+Debug: Facter: fact "swapsize_mb" has resolved to: 2047.99609375
+Debug: Facter: fact "memory.swap.used" has resolved to: 0 bytes
+Debug: Facter: fact "memory.swap.used_bytes" has resolved to: 0
+Debug: Facter: fact "memory.system.available" has resolved to: 8.73 GiB
+Debug: Facter: fact "memoryfree" has resolved to: 8.73 GiB
+Debug: Facter: fact "memory.system.available_bytes" has resolved to: 9371955200
+Debug: Facter: fact "memoryfree_mb" has resolved to: 8937.79296875
+Debug: Facter: fact "memory.system.capacity" has resolved to: 44.17%
+Debug: Facter: fact "memory.system.total" has resolved to: 15.63 GiB
+Debug: Facter: fact "memorysize" has resolved to: 15.63 GiB
+Debug: Facter: fact "memory.system.total_bytes" has resolved to: 16787435520
+Debug: Facter: fact "memorysize_mb" has resolved to: 16009.74609375
+Debug: Facter: fact "memory.system.used" has resolved to: 6.91 GiB
+Debug: Facter: fact "memory.system.used_bytes" has resolved to: 7415480320
+Debug: Facter: fact "kernel" has resolved to: Linux
+Debug: Facter: fact "os.family" has resolved to: Debian
+Debug: Facter: fact "osfamily" has resolved to: Debian
+Debug: Facter: fact "os.hardware" has resolved to: x86_64
+Debug: Facter: fact "hardwaremodel" has resolved to: x86_64
+Debug: Facter: fact "os.selinux.enabled" has resolved to: false
+Debug: Facter: fact "selinux" has resolved to: false
+Debug: Facter: fact "os.name" has resolved to: Ubuntu
+Debug: Facter: fact "operatingsystem" has resolved to: Ubuntu
+Debug: Facter: fact "puppetversion" has resolved to: 7.34.0
+Debug: Facter: fact "puppet_metrics_collector" has resolved to: {"have_vmware_tools"=>false, "have_systemd"=>false, "have_sysstat"=>false, "have_pe_psql"=>false}
+Debug: Facter: fact "is_pe" has resolved to: false
+Debug: Facter: fact "staging_http_get" has resolved to: wget
+Debug: Facter: fact "pe_patch" has resolved to: {"package_updates"=>[], "package_update_count"=>0, "missing_update_kbs"=>[], "missing_security_kbs"=>[], "security_package_updates"=>[], "security_package_update_count"=>0, "blackouts"=>{}, "pinned_packages"=>[], "last_run"=>{}, "patch_group"=>"", "reboot_override"=>"default", "reboots"=>{"reboot_required"=>"unknown"}, "block_patching_on_warnings"=>"false", "warnings"=>{"update_file"=>"Update file not found, update information invalid", "security_update_file"=>"Security update file not found, update information invalid"}, "blocked"=>false, "blocked_reasons"=>[]}
+Debug: Facter: fact "aio_agent_build" has resolved to: 7.34.0
+Debug: Facter: fact "platform_symlink_writable" has resolved to: true
+Debug: Facter: fact "platform_tag" has resolved to: ubuntu-18.04-amd64
+Debug: Facter: fact "puppet_files_dir_present" has resolved to: false
+Debug: Facter: fact "puppet_inventory_metadata" has resolved to: {"packages"=>{"collection_enabled"=>false, "last_collection_time"=>"0.0s"}}
+Debug: Facter: fact "aio_agent_version" has resolved to: 7.34.0
+Debug: Facter: fact "pe_databases" has resolved to: {"have_systemd"=>false}
+Debug: Evicting cache entry for environment :production
+Debug: Deleted text domain :production: false
+Debug: Facter: resolving fact with user_query: fqdn
+Debug: Facter: Searching fact: fqdn in file: fqdn.rb
+Debug: Facter: Searching fact: fqdn in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41eecd7e8 @name="fqdn", @fact_class=Facts::Linux::Networking::Fqdn, @user_query="fqdn", @type=:legacy, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: fact "fqdn" has resolved to: cb0350fe18c9
+Debug: Facter: resolving fact with user_query: ipaddress
+Debug: Facter: Searching fact: ipaddress in file: ipaddress.rb
+Debug: Facter: Searching fact: ipaddress in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41e9116b0 @name="ipaddress", @fact_class=Facts::Linux::Networking::Ip, @user_query="ipaddress", @type=:legacy, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: fact "ipaddress" has resolved to: 172.17.0.3
+Debug: Facter: resolving fact with user_query: ipaddress6
+Debug: Facter: Searching fact: ipaddress6 in file: ipaddress6.rb
+Debug: Facter: Searching fact: ipaddress6 in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41e69a210 @name="ipaddress6", @fact_class=Facts::Linux::Networking::Ip6, @user_query="ipaddress6", @type=:legacy, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: Searching fact: ipaddress6 in all custom facts
+Debug: Facter: Loading custom facts
+Debug: Caching environment :production (ttl = 0 sec)
+Debug: Facter: resolving fact with user_query: domain
+Debug: Facter: Searching fact: domain in file: domain.rb
+Debug: Facter: Searching fact: domain in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41f3c0ae8 @name="domain", @fact_class=Facts::Linux::Networking::Domain, @user_query="domain", @type=:legacy, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: Searching fact: domain in all custom facts
+Debug: Facter: Loading custom facts
+Debug: Could not find library 'cfpropertylist' required to enable feature 'cfpropertylist'
+Debug: Facter: resolving fact with user_query: aio_agent_version
+Debug: Facter: Searching fact: aio_agent_version in file: aio_agent_version.rb
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41fb820d8 @name="aio_agent_version", @fact_class=nil, @user_query="aio_agent_version", @type=:custom, @file=nil>]
+Debug: Facter: Searching fact: aio_agent_version in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41fb85698 @name="aio_agent_version", @fact_class=Facts::Linux::AioAgentVersion, @user_query="aio_agent_version", @type=:core, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: fact "aio_agent_version" has resolved to: 7.34.0
+Debug: Facter: fact "aio_agent_version" has resolved to: 7.34.0
+Notice: Compiled catalog for puppetclient in environment production in 0.22 seconds
+Debug: Found in cache :production (ttl = 0 sec)
+Debug: Puppet::Type::Package::ProviderRpm: file rpm does not exist
+Debug: Puppet::Type::Package::ProviderAptrpm: file rpm does not exist
+Debug: Puppet::Type::Package::ProviderYum: file yum does not exist
+Debug: Puppet::Type::Package::ProviderZypper: file /usr/bin/zypper does not exist
+Debug: Puppet::Type::Package::ProviderPkgin: file pkgin does not exist
+Debug: Puppet::Type::Package::ProviderUp2date: file /usr/sbin/up2date-nox does not exist
+Debug: Puppet::Type::Package::ProviderOpenbsd: file pkg_info does not exist
+Debug: Puppet::Type::Package::ProviderAptitude: file /usr/bin/aptitude does not exist
+Debug: Puppet::Type::Package::ProviderSun: file /usr/bin/pkginfo does not exist
+Debug: Facter: resolving fact with user_query: osfamily
+Debug: Facter: Searching fact: osfamily in file: osfamily.rb
+Debug: Facter: Searching fact: osfamily in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41efe3e70 @name="osfamily", @fact_class=Facts::Linux::Os::Family, @user_query="osfamily", @type=:legacy, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: fact "osfamily" has resolved to: Debian
+Debug: Puppet::Type::Package::ProviderPacman: file /usr/bin/pacman does not exist
+Debug: Puppet::Type::Package::ProviderUrpmi: file urpmi does not exist
+Debug: Puppet::Type::Package::ProviderFink: file /sw/bin/fink does not exist
+Debug: Puppet::Type::Package::ProviderAix: file /usr/bin/lslpp does not exist
+Debug: Puppet::Type::Package::ProviderNim: file /usr/sbin/nimclient does not exist
+Debug: Puppet::Type::Package::ProviderPortupgrade: file /usr/local/sbin/portupgrade does not exist
+Debug: Puppet::Type::Package::ProviderPortage: file /usr/bin/emerge does not exist
+Debug: Puppet::Type::Package::ProviderPkgng: file /usr/local/sbin/pkg does not exist
+Debug: Puppet::Type::Package::ProviderPkg: file /usr/bin/pkg does not exist
+Debug: Puppet::Type::Package::ProviderDnf: file dnf does not exist
+Debug: Puppet::Type::Package::ProviderTdnf: file tdnf does not exist
+Debug: Puppet::Type::Package::ProviderHpux: file /usr/sbin/swinstall does not exist
+Debug: Facter: resolving fact with user_query: fips_enabled
+Debug: Facter: Searching fact: fips_enabled in file: fips_enabled.rb
+Debug: Facter: Searching fact: fips_enabled in core facts and external facts
+Debug: Facter: Loading all internal facts
+Debug: Facter: List of resolvable facts: [#<Facter::SearchedFact:0x000055d41f035478 @name="fips_enabled", @fact_class=Facts::Linux::FipsEnabled, @user_query="fips_enabled", @type=:core, @file=nil>]
+Debug: Facter: Loading external facts
+Debug: Facter: fact "fips_enabled" has resolved to: false
+Debug: Puppet::Type::Package::ProviderPuppetserver_gem: file /opt/puppetlabs/bin/puppetserver does not exist
+Debug: Puppet::Type::Package::ProviderSunfreeware: file pkg-get does not exist
+Debug: Puppet::Type::Package::ProviderRug: file /usr/bin/rug does not exist
+Debug: Puppet::Type::Package::ProviderFreebsd: file /usr/sbin/pkg_info does not exist
+Debug: Puppet::Type::Package::ProviderPorts: file /usr/local/sbin/portupgrade does not exist
+Debug: Puppet::Type::Package::ProviderDnfmodule: file /usr/bin/dnf does not exist
+Debug: Puppet::Type::Package::ProviderOpkg: file opkg does not exist
+Debug: /Package[nginx]: Provider apt does not support features targetable; not managing attribute command
+Debug: /Package[nginx]: Provider apt does not support features install_only; not managing attribute install_only
+Debug: Creating default schedules
+Debug: Loaded state in 0.01 seconds
+Info: Using environment 'production'
+Debug: Loaded state in 0.01 seconds
+Info: Applying configuration version '1735630087'
+Debug: /Stage[main]/Main/Node[default]/Exec[start_nginx]/require: require to Package[nginx]
+Debug: /Stage[main]/Main/Node[default]/File[/usr/share/nginx/html/app9956725d]/require: require to Package[nginx]
+Debug: /Stage[main]/Main/Node[default]/File[/usr/share/nginx/html/app9956725d/index.html]/require: require to File[/usr/share/nginx/html/app9956725d]
+Debug: Prefetching apt resources for package
+Debug: Executing '/usr/bin/dpkg-query -W --showformat '${Status} ${Package} ${Version}\n''
+Debug: Executing: '/usr/bin/apt-mark showmanual'
+Debug: Exec[start_nginx](provider=posix): Executing check '/usr/sbin/service nginx status | grep "running"'
+Debug: Executing: '/usr/sbin/service nginx status | grep "running"'
+Debug: /Stage[main]/Main/Node[default]/Exec[start_nginx]/unless:  * nginx is running
+Debug: /Stage[main]/Main/Node[default]/Exec[start_nginx]: '/usr/sbin/service nginx start' won't be executed because of failed check 'unless'
+Debug: Finishing transaction 12960
+Debug: Storing state
+Debug: Pruned old state cache entries in 0.00 seconds
+Debug: Stored state in 0.01 seconds
+Notice: Applied catalog in 0.94
