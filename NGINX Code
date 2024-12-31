@@ -1,0 +1,28 @@
+node 'pa9956725d' {
+
+  # Install Nginx package
+  package { 'nginx':
+    ensure => installed,
+  }
+
+  # Ensure Nginx service is running using `service` command
+  exec { 'start_nginx':
+    command => '/usr/sbin/service nginx start',
+    unless  => '/usr/sbin/service nginx status | grep "running"',
+    require => Package['nginx'],
+  }
+
+  # Deploy demonstration web application directory
+  file { '/usr/share/nginx/html/app9956725d':
+    ensure  => directory,
+    require => Package['nginx'],
+  }
+
+  # Add a demonstration web page
+  file { '/usr/share/nginx/html/app9956725d/index.html':
+    ensure  => present,
+    content => "<html><body><h1>Welcome to App9956725d!</h1></body></html>",
+    require => File['/usr/share/nginx/html/app9956725d'],
+  }
+
+}
