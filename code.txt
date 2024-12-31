@@ -1,0 +1,34 @@
+class mysql_setup {
+  # Install MySQL server package
+  package { 'mysql-server':
+    ensure => installed,
+  }
+
+  # Start MySQL service manually if systemctl is unavailable
+  exec { 'start_mysql':
+    command => '/usr/sbin/mysqld &',
+    unless  => 'ps aux | grep mysqld | grep -v grep',
+    require => Package['mysql-server'],
+  }
+
+  # Create the database
+  exec { 'create_database':
+    command => 'mysql -e "CREATE DATABASE IF NOT EXISTS db9956725d;"',
+    unless  => 'mysql -e "SHOW DATABASES LIKE \'db9956725d\';" | grep db9956725d',
+    require => Exec['start_mysql'],
+  }
+
+  # Create the user
+  exec { 'create_user':
+    command => 'mysql -e "CREATE USER \'9956725d_user\'@\'localhost\' IDENTIFIED BY \'9956725d_password\';"',
+    unless  => 'mysql -e "SELECT User FROM mysql.user WHERE User = \'9956725d_user\';" | grep 9956725d_user',
+    require => Exec['start_mysql'],
+  }
+
+  # Grant privileges to the user
+  exec { 'grant_privileges':
+    command => 'mysql -e "GRANT ALL PRIVILEGES ON db9956725d.* TO \'9956725d_user\'@\'localhost\'; FLUSH PRIVILEGES;"',
+    unless  => 'mysql -e "SHOW GRANTS FOR \'9956725d_user\'@\'localhost\';" | grep db9956725d',
+    require => [Exec['create_database'], Exec['create_user']],
+  }
+}
