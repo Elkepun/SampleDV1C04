@@ -1,0 +1,29 @@
+class mysql_setup {
+  package { 'mysql-server':
+    ensure => installed,
+  }
+
+  service { 'mysql':
+    ensure => running,
+    enable => true,
+    require => Package['mysql-server'],
+  }
+
+  exec { 'create_database':
+    command => 'mysql -e "CREATE DATABASE IF NOT EXISTS db9956725d;"',
+    unless  => 'mysql -e "SHOW DATABASES LIKE \'db9956725d\';" | grep db9956725d',
+    require => Service['mysql'],
+  }
+
+  exec { 'create_user':
+    command => 'mysql -e "CREATE USER \'9956725d_user\'@\'localhost\' IDENTIFIED BY \'9956725d_password\';"',
+    unless  => 'mysql -e "SELECT User FROM mysql.user WHERE User = \'9956725d_user\';" | grep 9956725d_user',
+    require => Exec['create_database'],
+  }
+
+  exec { 'grant_privileges':
+    command => 'mysql -e "GRANT ALL PRIVILEGES ON db9956725d.* TO \'9956725d_user\'@\'localhost\'; FLUSH PRIVILEGES;"',
+    unless  => 'mysql -e "SHOW GRANTS FOR \'9956725d_user\'@\'localhost\';" | grep "ALL PRIVILEGES ON db9956725d.*"',
+    require => Exec['create_user'],
+  }
+}
