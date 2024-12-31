@@ -1,0 +1,7 @@
+/usr/sbin/service nginx status
+
+curl http://localhost/app9956725d/index.html
+
+
+expected
+<html><body><h1>Welcome to App9956725d!</h1></body></html>
